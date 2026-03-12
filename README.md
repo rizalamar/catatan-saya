@@ -34,7 +34,7 @@ Buka [http://localhost:5173](http://localhost:5173) di browser.
 
 ---
 
-    Yang saya pelajari:
+## 💬 Yang saya pelajari:
 
 -   UseState dan UseEffect
 -   Memecah jadi beberapa components
