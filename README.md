@@ -12,6 +12,7 @@ Aplikasi catatan sederhana yang dibangun sebagai latihan pertama menggunakan **R
 -   Hapus catatan
 -   Search/filter catatan berdasarkan judul (real-time)
 -   Menampilkan total catatan yang sedang ditampilkan
+-   Data tersimpan secara permanen di localStorage
 
 ---
 
@@ -30,6 +31,15 @@ npm run dev
 ```
 
 Buka [http://localhost:5173](http://localhost:5173) di browser.
+
+---
+
+    Yang saya pelajari:
+
+-   UseState dan UseEffect
+-   Memecah jadi beberapa components
+-   Membuat custom hooks
+-   Implementasi localStorage dengan initialize function untuk data initial
 
 ---
 
