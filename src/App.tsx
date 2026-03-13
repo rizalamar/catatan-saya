@@ -10,11 +10,14 @@ function NoteApp() {
 		setTitle,
 		body,
 		setBody,
+		editId,
 		querySearch,
 		setQuerySearch,
 		filteredNotes,
 		handleAddNote,
 		handleDeleteNote,
+		handleEdit,
+		handleCancel,
 	} = useNotes();
 	return (
 		<div className="min-h-screen bg-stone-950 text-stone-100 font-mono p-8 flex flex-col items-center">
@@ -27,13 +30,15 @@ function NoteApp() {
 				onTitleChange={setTitle}
 				onBodyChange={setBody}
 				onAddNote={handleAddNote}
+				isEditing={editId !== null}
+				onCancel={handleCancel}
 			/>
 
 			{/* Search notes */}
 			<SearchForm querySearch={querySearch} onQuerySearch={setQuerySearch} filteredNotes={filteredNotes} />
 
 			{/* List notes */}
-			<NoteList filteredNotes={filteredNotes} onDeleteNote={(id) => handleDeleteNote(id)} />
+			<NoteList filteredNotes={filteredNotes} onDeleteNote={(id) => handleDeleteNote(id)} onEdit={handleEdit} />
 		</div>
 	);
 }

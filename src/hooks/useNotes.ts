@@ -9,6 +9,7 @@ export function useNotes() {
 	const [title, setTitle] = useState<string>("");
 	const [body, setBody] = useState<string>("");
 	const [querySearch, setQuerySearch] = useState<string>("");
+	const [editId, setEditId] = useState<number | null>(null);
 
 	useEffect(() => {
 		localStorage.setItem("notes", JSON.stringify(notes));
@@ -19,15 +20,32 @@ export function useNotes() {
 	function handleAddNote() {
 		if (title.trim() === "") return;
 
-		const newNote: Note = {
-			id: Date.now(),
-			title: title,
-			body: body,
-		};
+		if (editId) {
+			setNotes(notes.map((note) => (note.id === editId ? { ...note, title, body } : note)));
+			setEditId(null);
+			setTitle("");
+			setBody("");
+		} else {
+			const newNote: Note = {
+				id: Date.now(),
+				title: title,
+				body: body,
+			};
 
-		setNotes([...notes, newNote]);
-		setTitle("");
-		setBody("");
+			setNotes([...notes, newNote]);
+			setTitle("");
+			setBody("");
+		}
+	}
+
+	function handleEdit(id: number) {
+		const existing = notes.find((note) => note.id === id);
+
+		if (!existing) return;
+
+		setEditId(id);
+		setTitle(existing.title);
+		setBody(existing.body);
 	}
 
 	function handleDeleteNote(id: number) {
@@ -35,15 +53,24 @@ export function useNotes() {
 		setNotes(note);
 	}
 
+	function handleCancel() {
+		setEditId(null);
+		setTitle("");
+		setBody("");
+	}
+
 	return {
 		title,
 		setTitle,
 		body,
 		setBody,
+		editId,
 		querySearch,
 		setQuerySearch,
 		filteredNotes,
 		handleAddNote,
 		handleDeleteNote,
+		handleEdit,
+		handleCancel,
 	};
 }
