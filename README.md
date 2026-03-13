@@ -13,6 +13,8 @@ Aplikasi catatan sederhana yang dibangun sebagai latihan pertama menggunakan **R
 -   Search/filter catatan berdasarkan judul (real-time)
 -   Menampilkan total catatan yang sedang ditampilkan
 -   Data tersimpan secara permanen di localStorage
+-   Edit notes
+-   Batal saat edit
 
 ---
 
